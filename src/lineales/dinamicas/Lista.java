@@ -10,90 +10,78 @@ public class Lista {
     }
 
     public boolean insertar(Object elem, int pos) {
-        boolean exito;
-        // se puede insertar al principio(pos=1), en el medio, o al final(pos
-        // =longitud+1)
+        boolean exito = true;
+
         if (pos < 1 || pos > longitud + 1) {
             exito = false;
         } else {
-
             if (pos == 1) {
-                // si se inserta en primer elemento, (cabecera)
-                Nodo nuevo = new Nodo(elem, null);
-                nuevo.setEnlace(this.cabecera);
-                this.cabecera = nuevo;
+                this.cabecera = new Nodo(elem, this.cabecera);
             } else {
                 Nodo aux = this.cabecera;
                 int i = 1;
-                while (i < pos - 1) { // Recorro hasta la posicion anterior de donde quiero insertar
+                while (i < pos - 1 && aux.getEnlace() != null) {
                     aux = aux.getEnlace();
                     i++;
                 }
                 Nodo nuevo = new Nodo(elem, aux.getEnlace());
                 aux.setEnlace(nuevo);
             }
-
-            exito = true;
             longitud++;
         }
-
         return exito;
     }
 
     public boolean eliminar(int pos) {
-        boolean exito;
-        if (pos < 1 || pos > longitud) {
+        boolean exito = true;
+
+        if (pos < 1 || pos > longitud || this.cabecera == null) {
             exito = false;
         } else {
             if (pos == 1) {
                 this.cabecera = this.cabecera.getEnlace();
             } else {
-                int i = 1;
                 Nodo aux = this.cabecera;
-                while (i < pos - 1) {
+                int i = 1;
+                while (i < pos - 1 && aux.getEnlace() != null) {
                     aux = aux.getEnlace();
                     i++;
                 }
-                aux.setEnlace(aux.getEnlace().getEnlace());
+                if (aux.getEnlace() != null) {
+                    aux.setEnlace(aux.getEnlace().getEnlace());
+                }
             }
-            exito = true;
             longitud--;
         }
         return exito;
     }
 
     public Object recuperar(int pos) {
-        Object elemento;
-        if (pos < 1 || pos > longitud + 1) {
-            elemento = null;
-        } else {
-            Nodo aux = this.cabecera;
-            int i = 1;
-            while (i < pos) {
-                aux = aux.getEnlace();
-                i++;
-            }
-            elemento = aux.getElemento();
+        if (pos < 1 || pos > longitud || this.cabecera == null) {
+            return null;
         }
-        return elemento;
+
+        Nodo aux = this.cabecera;
+        int i = 1;
+        while (i < pos) {
+            aux = aux.getEnlace();
+            i++;
+        }
+        return aux.getElemento();
     }
 
     public int localizar(Object elemento) {
         int pos = 1;
-        boolean encontrado = false;
         Nodo aux = this.cabecera;
-        while (pos < longitud + 1 && encontrado == false) { // Recorro toda la lista hasta encontrar el elemento
+
+        while (aux != null) {
             if (aux.getElemento().equals(elemento)) {
-                encontrado = true;
-            } else {
-                pos++;
-                aux = aux.getEnlace();
+                return pos;
             }
+            pos++;
+            aux = aux.getEnlace();
         }
-        if (encontrado == false) {
-            pos = -1;
-        }
-        return pos;
+        return -1;
     }
 
     public String toString() {
@@ -124,14 +112,18 @@ public class Lista {
 
     public void vaciar() {
         this.cabecera = null;
+        this.longitud = 0;
     }
 
     public Lista clone() {
         Lista clon = new Lista();
+
         if (this.cabecera != null) {
             Nodo aux = this.cabecera;
             Nodo auxClon = new Nodo(aux.getElemento(), null);
             clon.cabecera = auxClon;
+            clon.longitud = this.longitud;
+
             aux = aux.getEnlace();
 
             while (aux != null) {
