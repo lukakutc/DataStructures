@@ -44,17 +44,19 @@ public class Pila {
 
     public Pila clone() {
         Pila clon = new Pila();
-        if (this.tope != null) {// Si la pila no esta vacia la clonamos
-            Nodo aux = this.tope.getEnlace(); // recorremos la pila original con un nodo auxiliar
-            Nodo auxClon = new Nodo(aux.getElemento(), null);// creamos el primer nodo de la pila clon y empezamos a
-                                                             // recorrer a partir del segundo de la original
-            clon.tope = auxClon; // El tope es este primer nodo creado
+        if (this.tope != null) { 
+            Nodo aux = this.tope; // Recorremos la pila original desde el tope
+            Nodo clonTope = new Nodo(aux.getElemento(), null); // Clonamos el primer nodo
+            clon.tope = clonTope; 
 
-            while (aux != null) { // Si no se termino la pila
-                Nodo nuevo = new Nodo(aux.getElemento(), null);// Creamos nuevo nodo de clon
-                auxClon.setEnlace(nuevo); // Lo enganchamos al anterior nodo creado
-                auxClon = auxClon.getEnlace(); // Avanzamos al nodo recien creado para seguir enganchando
-                aux = aux.getEnlace(); // Avanzamos al siguiente nodo de la pila original
+            Nodo auxClon = clon.tope; // Puntero para recorrer la pila clonada
+            aux = aux.getEnlace(); // Avanzamos en la original
+
+            while (aux != null) { 
+                Nodo nuevo = new Nodo(aux.getElemento(), null); // Creamos nuevo nodo en el clon
+                auxClon.setEnlace(nuevo); // Lo enganchamos al clon
+                auxClon = auxClon.getEnlace(); // Avanzamos en el clon
+                aux = aux.getEnlace(); // Avanzamos en la original
             }
         }
         return clon;
