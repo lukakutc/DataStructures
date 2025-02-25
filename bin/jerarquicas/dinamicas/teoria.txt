@@ -1,0 +1,19 @@
+arboles.
+
+Todo arbol tiene un nodo raiz. nodo raiz es aquel que no tiene nodos padres. solo nodos hijos. es la base del arbol y solo hay una raíz por arbol
+
+Hoja: un nodo hoja, es aquel que no tiene hijoss
+Grado: el grado de un nodo es el numero de hijos que tiene.
+Nodo interior: nodo que no es hoja ni raiz
+Nodos hermanos: los que tienen un mismo nodo padre.
+Nivel: el nivel de un nodo es la altura en la que esta el nodo. un nodo tiene nivel + 1 respecto a su padre. por ej: a papa de b, b papa de c. a es nivel 0, b es uno, c es 2.
+Camino: el camino es el conjunto de nodos por los cuales hay que pasar para llegar desde un NODO A a un nodo  B. por ejemplo a-->c-->b, el caminio es {a,c,b}
+Camino bis: es entre padres e hijos. no existen caminos entre nodos que se encuentran en diferentes subarboles
+Descendiente: un nodo C es descendiende de un nodo A si existe un camino desde A hasta C.
+Ancestro: un nodo A es acenstro de un ndo C si C es descendiente de A
+Longitud del camino: Cant de nodos - 1. La cantidad de enlaces que hay que agarrar. por ejemplo
+Longitud del arbol: longitud del camino mas largo del arbol de la raiz a una hoja
+Profundidad de un nodo: Longitud del camino que va desde la raiz hasta ese nodo.
+
+Arboles:
+Similares si tienen misma estructura, distintos si tienen distinta estructura, equivalentes si tienen misma estructura y mismos datos.

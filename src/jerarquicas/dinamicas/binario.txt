@@ -1,0 +1,5 @@
+Cada nodo puede tener maximo 2 hijos, izquierdo y derecho.
+Arbol completo: aquel que todos los nodos tienen 2 hijos menos las hojas. tiene 2^nivel - 1 nodos.
+cada nivel tiene 2^nivel nodos. 
+los niveles  se cuentan desde el 0. pero si tenemos que un arbol tiene nivel 0 y 1, el arbol tiene 2 niveles.
+
