@@ -52,14 +52,11 @@ public class ArbolBin {
                 resultado = n;
             } else {
                 // Si no esta en el nodo busco en los hijos
-                if (n.getIzquierdo() != null) {
-                    // busco en hijo izquierdo
                     resultado = obtenerNodo(n.getIzquierdo(), buscado);
                     // si no encontro en hijo izquierdo, busca en derecho
                     if (resultado == null) {
                         resultado = obtenerNodo(n.getDerecho(), buscado);
                     }
-                }
             }
         }
         return resultado;
@@ -151,8 +148,36 @@ public class ArbolBin {
                 }
             }
         }
-
         return nivel;
     }
 
+    public int altura(){
+        int altura;
+
+        if(this.raiz==null){
+            altura = -1;
+        }else{
+            altura = alturaAux(this.raiz);
+        }
+        return altura;
+    }
+
+    private int alturaAux(NodoArbol nodo){
+        int altura=-1;
+        //Caso base
+        if(nodo!=null){
+            if(nodo.getIzquierdo()==null && nodo.getDerecho()==null){
+                //Si es hoja
+                altura = 0;
+            }else{
+                int alturaIzq = alturaAux(nodo.getIzquierdo());
+                int alturaDer = alturaAux(nodo.getDerecho());
+                altura = Math.max(alturaIzq, alturaDer)+1;
+            }
+        }
+
+        return altura;
+    }
+
+    
 }

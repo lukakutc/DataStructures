@@ -15,6 +15,7 @@ public class ProbandoBin {
         arbol.insertar(7, 6, 'I');
         arbol.insertar(8, 6, 'D');
         arbol.insertar(9, 8, 'D');
+        arbol.insertar(10, 9, 'D');
 
         System.out.println("preorden: " + arbol.listarPreorden().toString());
         System.out.println("inorden: " + arbol.listarInorden().toString());
@@ -28,5 +29,8 @@ public class ProbandoBin {
         System.out.println("7 en nivel: " + arbol.nivel(7));
         System.out.println("8 en nivel: " + arbol.nivel(8));
         System.out.println("9 en nivel: " + arbol.nivel(9));
+        System.out.println("10 en nivel: " + arbol.nivel(10));
+
+        System.out.println("Probando altura: "+arbol.altura());
     }
 }
