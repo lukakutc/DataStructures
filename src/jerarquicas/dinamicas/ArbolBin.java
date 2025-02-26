@@ -113,4 +113,46 @@ public class ArbolBin {
             lista.insertar(nodo.getElem(), lista.longitud() + 1);
         }
     }
+
+    public boolean esVacio() {
+        return this.raiz == null;
+    }
+
+    public int nivel(Object elemento) {
+        int nivel;
+        if (this.raiz == null) {
+            nivel = -1; // Si el árbol está vacío, el elemento no puede existir
+        } else {
+            nivel = nivelAux(this.raiz, elemento); // Llamamos al auxiliar
+        }
+        return nivel;
+    }
+
+    private int nivelAux(NodoArbol nodo, Object buscado) {
+        // si subarbol vacio -1, no se encontro
+        int nivel = -1;
+        // Si no es vacio
+        if (nodo != null) {
+            if (nodo.getElem().equals(buscado)) {
+                // si es el nodo, lo encontramos en en nivel 0 del subarbol (el nodo actual)
+                nivel = 0;
+            } else {
+                // si no es nulo, ni es el nodo encontrado, puedo seguir buscando
+                int nivelIzq = nivelAux(nodo.getIzquierdo(), buscado);
+                if (nivelIzq > -1) {
+                    // si el nivel izq es mayor a -1 significa que se encontro
+                    nivel = nivelIzq + 1;
+                } else {
+                    // busco en el subarbol derecho
+                    int nivelDer = nivelAux(nodo.getDerecho(), buscado);
+                    if (nivelDer > -1) {
+                        nivel = nivelDer + 1;
+                    }
+                }
+            }
+        }
+
+        return nivel;
+    }
+
 }
